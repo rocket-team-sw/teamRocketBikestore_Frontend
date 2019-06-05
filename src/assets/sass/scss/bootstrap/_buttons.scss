@@ -1,0 +1,46 @@
+.btn{
+  &[class*="btn-"]{
+    margin-bottom: 1rem;
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+    background-color: transparent;
+
+  }
+
+  @include hover {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+    background-color: rgb(231, 95, 152);
+    border-color: transparent;
+  }
+}
+.btn-group-vertical{
+  .btn{
+    &[class*="btn-"]{
+      margin-bottom: 0;
+    }
+  }
+}
+.input-group{
+  .btn{
+    &[class*="btn-"]{
+      margin-bottom: 0;
+    }
+  }
+  margin-bottom: 1rem;
+}
+// Custom round buttons
+.btn-round{
+  border-radius: $border-radius-extreme;
+}
+
+.btn:active, .btn.active{
+  background-image: initial;
+}
+button:hover{
+  cursor: pointer;
+}
+
+.btn-group>.btn.active{
+  z-index: 0;
+}

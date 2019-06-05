@@ -1,0 +1,44 @@
+<!-- Filter Datatable Options Starts -->
+<section id="filter" class="mb-3">
+  <div class="row text-left">
+    <div class="col-12">
+      <div class="content-header">Gestión de Menús</div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-indigo btn-raised" (click)="openCreateMenu()" align-left> Crear Menú
+  </button>
+  <div class="row">
+    <div class="col-sm-12">
+      <!--<input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='Type to filter the name column...'
+        (keyup)='updateFilter($event)' />-->
+
+
+      <ngx-datatable #table class='bootstrap tablaMenu' [rows]="rows" [columns]="columns" [columnMode]="'force'"
+        [sortType]="'multi'" [reorderable]="false" [rowHeight]="50" [summaryPosition]="'top'">
+        <ngx-datatable-column prop="menuName" [resizeable]="false">
+          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+            Nombre del Menú
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Acciones" [resizeable]="false">
+          <ng-template ngx-datatable-header-template>
+            Acciones
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <!--Botón Ver Detalles-->
+
+            <!--Botón Actualizar-->
+
+            <!--Botón Eliminar-->
+            <button type="submit" class="btn btn-danger btn-raised" (click)="deleteWarning(row.idMenu)">
+              <i class="fa fa-trash"></i>
+            </button>
+            <!--Botón Emparejar-->
+
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div>
+</section>
+<!-- Filter Datatable Options Ends -->

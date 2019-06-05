@@ -1,0 +1,64 @@
+<div class="mainContainer">
+  <div class="modal-header">
+    <h4>Asignación de Perfiles</h4>
+    <button type="button" class="close" data-dismiss="activeModal" (click)="closeWindow()" arial-label="Close"><span
+        aria-hidden="true">&times;</span></button>
+  </div>
+  <section id="regestration">
+    <div class="card-block">
+      <form (ngSubmit)="f.form.valid" #f="ngForm">
+        <!--Nombre Módulo-->
+        <ul class="list-group">
+          <div class="">
+            <li class="list-group-item">
+              <label>
+                Nombre del Usuario:
+              </label>
+              {{userInfoUpdate.name}}
+            </li>
+          </div>
+          <!--Selector de Perfiles -->
+          <div class="">
+            <li class="list-group-item">
+              <label>Seleccione un perfil para el usuario</label>
+              <select placeholder="Seleccione el Menu" class="custom-select form-control" id="location2"
+                name="location2" [(ngModel)]="form.userProfile" #moduleMenu="ngModel">
+                <option *ngFor='let profileInfo of profileInfo' [value]="profileInfo.id">
+                  {{profileInfo.profileName}}
+                </option>
+              </select>
+              <button class="btn btn-pink btn-raised" (click)="toPairProfile(form.userProfile, userInfoUpdate.id)">
+                Adicionar Perfil al Usuario
+              </button>
+              <div *ngIf="isPairedProfileFailed" class="alert alert-danger">
+                {{errorMessage}}
+              </div>
+            </li>
+          </div>
+        </ul>
+      </form>
+    </div>
+  </section>
+
+
+  <!--Tabla de Módulos-->
+  <div class="card">
+    <div class="card-body">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <label>
+            Perfil Asignado:
+          </label>
+          {{nombrePerfil}}
+        </li>
+        <li class="list-group-item">
+          <label>
+            Descripción del Perfil:
+          </label>
+          {{descripcionPerfil}}
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</div>

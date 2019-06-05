@@ -1,0 +1,38 @@
+<div class="mainContainer">
+  <div class="modal-header">
+    <h4>Creación del Módulo</h4>
+    <button type="button" class="close" data-dismiss="activeModal" (click)="closeWindow()" arial-label="Close"><span
+      aria-hidden="true">&times;</span></button>
+  </div>
+  <section id="regestration">
+    <div class="card-block">
+      <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+        <!--Nombre Módulo-->
+        <ul class="list-group">
+          <div class="">
+            <li class="list-group-item">
+              <label>Ingrese el nombre del módulo</label>
+              <input type="text" class="form-control" name="nameModule" id="nameModule" [(ngModel)]="form.nameModule"
+                #nameModule="ngModel" placeholder="Nombre Módulos" required>
+            </li>
+          </div>
+          <!--Descripción Módulo-->
+          <div class="">
+            <li class="list-group-item">
+              <label>Ingrese la descripción del módulo</label>
+              <input type="text" class="form-control" name="description" id="description" [(ngModel)]="form.description"
+                #description="ngModel" placeholder="Descripción Módulo" required>
+            </li>
+          </div>
+          <!--Botón Crear-->
+          <button type="submit" class="btn btn-secondary btn-raised" [disabled]="!f.valid">
+            Crear Módulo
+          </button>
+          <div *ngIf="f.submitted && !isCreatedModule" class="alert alert-danger">
+            Error al crear módulo: {{errorMessage}}
+          </div>
+        </ul>
+      </form>
+    </div>
+  </section>
+</div>

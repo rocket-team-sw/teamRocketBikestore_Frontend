@@ -1,0 +1,56 @@
+<!-- Filter Datatable Options Starts -->
+<section id="filter" class="mb-3">
+  <div class="row text-left">
+    <div class="col-12">
+      <div class="content-header">Gestión de Bicicletas</div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-purple btn-raised" (click)="openCreateModule()" align-left> Crear Bicicleta
+  </button>
+  <div class="row">
+    <div class="col-sm-12">
+      <!--<input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='Type to filter the name column...'
+        (keyup)='updateFilter($event)' />-->
+
+      <ngx-datatable #table class='bootstrap tablaModulos' [rows]="rows" [columns]="columns" [columnMode]="'force'"
+        [sortType]="'multi'" [reorderable]="false" [rowHeight]="50" [summaryPosition]="'top'">
+        <ngx-datatable-column prop="nameModule" [resizeable]="false">
+          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+            Nombre del Módulo
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="creatingDate">
+          <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+            Fecha de Creación
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Acciones" [resizeable]="false">
+          <ng-template ngx-datatable-header-template>
+            Acciones
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <!--Botón Ver Detalles-->
+            <button type="submit" class="btn btn-green btn-raised padding-center"
+              (click)="listModuleDetail(row.idModule)">
+              <i class="fa fa-search"></i>
+            </button>
+            <!--Botón Actualizar-->
+            <button type="submit" class="btn btn-blue btn-raised" (click)="onUpdateModules(row.idModule)">
+              <i class="fa fa-pencil"></i>
+            </button>
+            <!--Botón Eliminar-->
+            <button type="submit" class="btn btn-danger btn-raised" (click)="deleteWarning(row)">
+              <i class="fa fa-trash"></i>
+            </button>
+            <!--Botón Emparejar-->
+            <button type="submit" class="btn btn-orange btn-raised" (click)="toPairMenu(row.idModule)">
+              <i class="fa fa-plug"></i>
+            </button>
+
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div>
+</section>
+<!-- Filter Datatable Options Ends -->

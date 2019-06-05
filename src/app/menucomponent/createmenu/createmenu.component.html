@@ -1,0 +1,74 @@
+<div class="mainContainer">
+  <h4 class="form-section">Creación del Menú</h4>
+  <section id="regestration">
+    <div class="card-block">
+      <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+        <!--Nombre Menú-->
+        <ul class="list-group">
+          <div class="">
+            <li class="list-group-item">
+              <label>Ingrese el nombre del menú</label>
+              <input type="text" class="form-control" name="menuName" id="menuName" [(ngModel)]="form.menuName"
+                #nameModule="ngModel" placeholder="name" required>
+            </li>
+          </div>
+           <!--Path Menú-->
+           <div class="">
+            <li class="list-group-item">
+              <label>Ingrese la ruta del menú</label>
+              <input type="text" class="form-control" name="menuPath" id="menuPath" [(ngModel)]="form.menuPath"
+                #urlMenu="ngModel" placeholder="path" required>
+            </li>
+          </div>
+           <!--Path Menú-->
+           <div class="">
+            <li class="list-group-item">
+              <label>Ingrese el título del menú</label>
+              <input type="text" class="form-control" name="menuTitle" id="menuTitle" [(ngModel)]="form.menuTitle"
+                #urlMenu="ngModel" placeholder="title" required>
+            </li>
+          </div>
+           <!--Path Menú-->
+           <div class="">
+            <li class="list-group-item">
+              <label>Ingrese el ícono del menú</label>
+              <input type="text" class="form-control" name="menuIcon" id="menuIcon" [(ngModel)]="form.menuIcon"
+                #menuIcon="ngModel" placeholder="icon">
+            </li>
+          </div>
+           <!--Path Menú-->
+           <div class="">
+            <li class="list-group-item">
+              <label>Ingrese la clase del menú</label>
+              <input type="text" class="form-control" name="menuClass" id="menuClass" [(ngModel)]="form.menuClass"
+                #menuClass="ngModel" placeholder="class">
+            </li>
+          </div>
+            <!--Path Menú-->
+            <div class="">
+              <li class="list-group-item">
+                <label>Ingrese el badge</label>
+                <input type="text" class="form-control" name="menuBadge" id="menuBadge" [(ngModel)]="form.menuBadge"
+                  #menuBadge="ngModel" placeholder="badge">
+              </li>
+            </div>
+              <!--Path Menú-->
+           <div class="">
+            <li class="list-group-item">
+              <label>Ingrese el badgeClass</label>
+              <input type="text" class="form-control" name="menuBadgeClass" id="menuBadgeClass" [(ngModel)]="form.urlMenu"
+                #menuBadgeClass="ngModel" placeholder="badgeClass">
+            </li>
+          </div>
+          <!--Botón Crear-->
+          <button type="submit" class="btn btn-indigo btn-raised" [disabled]="!f.valid">
+            Crear Menu
+          </button>
+          <div *ngIf="f.submitted && !isCreatedMenu" class="alert alert-danger">
+            Error al crear menu: {{errorMessage}}
+          </div>
+        </ul>
+      </form>
+    </div>
+  </section>
+</div>

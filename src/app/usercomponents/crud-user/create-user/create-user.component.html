@@ -1,0 +1,301 @@
+<!--Registration Page Starts for ROLE_SUPER-->
+<div *ngIf="roleTitle == 'ROLE_SUPER'">
+  <div class="registrationContainer">
+    <h4 class="form-section">Registro de Usuario</h4>
+    <section id="regestration">
+      <div class="card-block">
+        <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+          <!--Input Nombre-->
+          <ul>
+            <div class="">
+              <li>
+                <label>Ingrese el nombre completo </label>
+                <input type="text" class="form-control" name="fname" id="fname" [(ngModel)]="form.name" #name="ngModel"
+                  placeholder="Nombre Completo" required>
+              </li>
+            </div>
+            <!--Input Email-->
+            <div class="">
+              <li>
+                <label>Ingrese el email</label>
+                <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Email"
+                  [(ngModel)]="form.email" #email="ngModel" required email>
+              </li>
+            </div>
+            <!--Input Username-->
+            <div class="">
+              <li>
+                <label>Ingrese el nombre de Usuario</label>
+                <input type="text" class="form-control" name="inputUsername" id="inputUsername" placeholder="Username"
+                  [(ngModel)]="form.username" #username="ngModel" required>
+              </li>
+            </div>
+            <!--Input password-->
+            <div class="">
+              <li>
+                <label for="inputPassword">Ingrese la contraseña</label>
+                <input type="password" class="form-control" name="inputPassword" id="inputPassword" placeholder="Contraseña"
+                  [(ngModel)]="form.password" #password="ngModel" on-focusout="passwordValidation()" required maxlength="12">
+              </li>
+            </div>
+            <!--Input confirmation password-->
+            <div class="">
+              <li>
+                <label for="inputPassword">Ingrese nuevamente la contraseña</label>
+                <input type="password" class="form-control" name="inputPassword1" id="inputPassword1" placeholder="Confirmación Contraseña"
+                  [(ngModel)]="form.confirmPassword" #confirmPassword="ngModel" on-focusout="passwordValidation()"
+                  required>
+              </li>
+              <div class="alert alert-danger" *ngIf="isErrorPassword">
+                {{passwordValidationError}}
+              </div>
+            </div>
+            <!--Input Rol-->
+            <div class="">
+              <li>
+                <label for="inputRole">Rol por Defecto</label>
+                <input type="text" name="inputRole" id="inputRole" placeholder="Rol de Administrador"
+                  [(ngModel)]="form.role" #role="ngModel" readonly/>
+              </li>
+            </div>
+            <!--Input Datos Compañía-->
+            <div class="">
+              <div class="companyData">
+                <label>Datos de la Compañía</label>
+                <ul>
+                  <li> <label for="inputcompanyName">Nombre de la Compañía</label>
+                    <input type="text" class="form-control" name="inputcompanyName" id="inputcompanyName" placeholder="Nombre de Empresa"
+                      [(ngModel)]="form.companyName" #companyName="ngModel" required></li>
+                  <li> <label for="inputCompanyPhone">Teléfono de la Compañía</label>
+                    <input type="text" class="form-control" name="inputcompanyPhone" id="inputcompanyAddress"
+                      placeholder="Teléfono de la Empresa" [(ngModel)]="form.companyPhone" #companyPhone="ngModel"
+                      required></li>
+                  <li> <label for="inputCompanyAddress">Dirección de la Compañía</label>
+                    <input type="text" class="form-control" name="inputcompanyAddress" id="inputcompanyPhone"
+                      placeholder="Dirección de la Empresa" [(ngModel)]="form.companyAddress" #companyAddress="ngModel"
+                      required></li>
+                      <li> <label for="inputcompanLogo">Logo de la Compañía</label>
+                        <div *ngIf="currentFileUpload" class="progress">
+                          <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                            aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
+                            {{progress.percentage}}%</div>
+                        </div>
+
+                        <label class="btn btn-default">
+                          <input type="file" class="form-control" (change)="selectFile($event)">
+                        </label>
+
+                        <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Subir Archivo</button>
+                      </li>
+                </ul>
+              </div>
+            </div>
+            <!--Input Tipo Documento-->
+            <div class="">
+              <li>
+                <label for="">Seleccione el Tipo de Documento</label>
+                <select placeholder="Seleccione el Documento" [(ngModel)]="form.documentType" #documentType="ngModel"
+                  class="custom-select form-control" id="inputdocumentType" name="inputdocumentType">
+                  <option value="Cédula de Ciudadanía">Cédula de Ciudadanìa</option>
+                  <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
+                  <option value="Pasaporte">Pasaporte</option>
+                  <option value="Cédula de Extranjería">Cédula de Extranjería</option>
+                  <option value="NIT">NIT</option>
+                </select>
+              </li>
+            </div>
+            <!--Input Número Documento-->
+            <div class="">
+              <li>
+                <label for="inputDocumentNumber">Ingrese el Número de Documento</label>
+                <input type="text" class="form-control" name="inputDocumentNumber" id="inputDocumentNumber"
+                  placeholder="Número de Documento" [(ngModel)]="form.document" #document="ngModel" required>
+              </li>
+            </div>
+            <!--Input Dirección-->
+            <div class="">
+              <li>
+                <label>Ingrese la Dirección</label>
+                <input type="text" class="form-control" name="inputAddress" id="inputAddress" placeholder="Dirección"
+                  [(ngModel)]="form.address" #address="ngModel" required>
+              </li>
+            </div>
+            <!--Input Teléfono-->
+            <div class="">
+              <li>
+                <label>Ingrese el Teléfono</label>
+                <input type="text" class="form-control" name="inputPhone" id="inputPhone" placeholder="Número de Teléfono"
+                  [(ngModel)]="form.phone" #phone="ngModel" required>
+              </li>
+            </div>
+            <!--Términos y Condiciones-->
+            <div class="form-group col-sm-offset-1">
+              <div class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                <input type="checkbox" class="custom-control-input" checked id="terms">
+                <label class="custom-control-label pl-2" for="terms">Acepto <a>términos y condiciones</a></label>
+              </div>
+            </div>
+            <div class="form-group text-center">
+              <!--<button type="button" class="btn btn-warning btn-raised" [disabled]="!f.valid">Get Started</button>-->
+              <button type="submit" class="btn btn-warning btn-raised" [disabled]="!f.valid">Registrar</button>
+              <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-danger">
+                Error al Registrar {{errorMessage}}
+              </div>
+            </div>
+          </ul>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>
+<!--Registration Page Ends for ROLE_SUPER-->
+
+
+
+<!--Registration Page Starts for ROLE_ADMIN-->
+
+<div *ngIf="roleTitle == 'ROLE_ADMIN'">
+  <div class="registrationContainer">
+    <h4 class="form-section">Registro de Usuario</h4>
+    <section id="regestration">
+      <div class="card-block">
+        <form (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+          <!--Input Nombre-->
+          <ul>
+            <div class="">
+              <li>
+                <label>Ingrese el nombre completo</label>
+                <input type="text" class="form-control" name="fname" id="fname" [(ngModel)]="form.name" #name="ngModel"
+                  placeholder="Nombre Completo" required>
+              </li>
+            </div>
+            <!--Input Email-->
+            <div class="">
+              <li>
+                <label>Ingrese el email</label>
+                <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="Email"
+                  [(ngModel)]="form.email" #email="ngModel" required email>
+              </li>
+            </div>
+            <!--Input Username-->
+            <div class="">
+              <li>
+                <label>Ingrese el nombre de Usuario</label>
+                <input type="text" class="form-control" name="inputUsername" id="inputUsername" placeholder="Username"
+                  [(ngModel)]="form.username" #username="ngModel" required>
+              </li>
+            </div>
+            <!--Input password-->
+            <div class="">
+              <li>
+                <label for="inputPassword">Ingrese la contraseña</label>
+                <input type="password" class="form-control" name="inputPassword" id="inputPassword" placeholder="Contraseña"
+                  [(ngModel)]="form.password" #password="ngModel" required>
+              </li>
+            </div>
+            <!--Input confirmation password-->
+            <div class="">
+              <li>
+                <label for="inputPassword">Ingrese nuevamente la contraseña</label>
+                <input type="password" class="form-control" name="inputPassword1" id="inputPassword1" placeholder="Confirmación Contraseña"
+                  [(ngModel)]="form.confirmPassword" #confirmPassword="ngModel" on-focusout="passwordValidation()"
+                  required>
+              </li>
+              <div class="alert alert-danger" *ngIf="isErrorPassword">
+                {{passwordValidationError}}
+              </div>
+            </div>
+            <!--Input Rol-->
+            <div class="input-group mb-3">
+              <li>
+                <label for="inputRole">Seleccione el Rol</label>
+                <select [(ngModel)]="form.role" #role="ngModel" class="custom-select form-control" id="location" name="location">
+                  <option value="">Seleccione el Rol</option>
+                  <option value="ROLE_ADMIN">Rol de Administrador</option>
+                  <option value="ROLE_USER">Rol de Usuario</option>
+                </select>
+              </li>
+            </div>
+            <!--Input Datos Compañía-->
+            <div *ngIf="form.role == 'ROLE_ADMIN'" class="">
+              <div class="">
+                <div class="companyData">
+                  <label>Datos de la Compañía</label>
+                  <ul>
+                    <li> <label for="inputcompanyName">Nombre de la Compañía</label>
+                      <input type="text" class="form-control" name="inputcompanyName" id="inputcompanyName" placeholder="Nombre de Empresa"
+                        [(ngModel)]="form.companyName" #companyName="ngModel" required></li>
+                    <li> <label for="inputCompanyPhone">Teléfono de la Compañía</label>
+                      <input type="text" class="form-control" name="inputcompanyPhone" id="inputcompanyAddress"
+                        placeholder="Teléfono de la Empresa" [(ngModel)]="form.companyPhone" #companyPhone="ngModel"
+                        required></li>
+                    <li> <label for="inputCompanyAddress">Dirección de la Compañía</label>
+                      <input type="text" class="form-control" name="inputcompanyAddress" id="inputcompanyPhone"
+                        placeholder="Dirección de la Empresa" [(ngModel)]="form.companyAddress" #companyAddress="ngModel"
+                        required></li>
+                  </ul>
+                </div>
+              </div>
+
+              <!--<input type="text" class="form-control" name="inputRole" id="inputRole" placeholder="Rol de Usuario"
+          [(ngModel)]="form.role" #role="ngModel" required>-->
+            </div>
+            <!--Input Tipo Documento-->
+            <div class="">
+              <li>
+                <label for="">Seleccione el Tipo de Documento</label>
+                <select placeholder="Seleccione el Documento" [(ngModel)]="form.documentType" #documentType="ngModel"
+                  class="custom-select form-control" id="location2" name="location2">
+                  <option value="Cédula de Ciudadanía">Cédula de Ciudadanía</option>
+                  <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
+                  <option value="Pasaporte">Pasaporte</option>
+                  <option value="Cédula de Extranjería">Cédula de Extranjería</option>
+                  <option value="NIT">NIT</option>
+                </select>
+              </li>
+            </div>
+            <!--Input Número Documento-->
+            <div class="">
+              <li>
+                <label for="inputDocumentNumber">Ingrese el Número de Documento</label>
+                <input type="text" class="form-control" name="inputDocumentNumber" id="inputDocumentNumber"
+                  placeholder="Número de Documento" [(ngModel)]="form.document" #document="ngModel" required>
+              </li>
+            </div>
+            <!--Input Dirección-->
+            <div class="">
+              <li>
+                <label>Ingrese la Dirección</label>
+                <input type="text" class="form-control" name="inputAddress" id="inputAddress" placeholder="Dirección"
+                  [(ngModel)]="form.address" #address="ngModel" required>
+              </li>
+            </div>
+            <!--Input Teléfono-->
+            <div class="">
+              <li>
+                <label>Ingrese el Teléfono</label>
+                <input type="text" class="form-control" name="inputPhone" id="inputPhone" placeholder="Número de Teléfono"
+                  [(ngModel)]="form.phone" #phone="ngModel" required>
+              </li>
+            </div>
+            <!--Términos y Condiciones-->
+            <div class="form-group col-sm-offset-1">
+              <div class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                <input type="checkbox" class="custom-control-input" checked id="terms">
+                <label class="custom-control-label pl-2" for="terms">Acepto <a>términos y condiciones</a></label>
+              </div>
+            </div>
+            <div class="form-group text-center">
+              <!--<button type="button" class="btn btn-warning btn-raised" [disabled]="!f.valid">Get Started</button>-->
+              <button type="submit" class="btn btn-warning btn-raised" [disabled]="!f.valid">Registrar</button>
+              <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-danger">
+                Error al Registrar {{errorMessage}}
+              </div>
+            </div>
+          </ul>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>
+<!--Registration Page Ends for ROLE_ADMIN-->

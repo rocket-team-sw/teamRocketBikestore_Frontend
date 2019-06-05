@@ -1,0 +1,28 @@
+<!--Actualización del Módulo-->
+<div class="mainContainer">
+  <div class="modal-header">
+    <h4>Actualización de Módulo</h4>
+    <button type="button" class="close" data-dismiss="activeModal" (click)="closeWindow()" arial-label="Close"><span
+        aria-hidden="true">&times;</span></button>
+  </div>
+  <section id="update">
+    <div class="card-block mx-auto">
+      <form [formGroup]="module">
+        <!--Input moduleName-->
+        <div class="">
+          <label>Ingrese el Nombre Completo</label>
+          <input type="text" formControlName="nameModule" class='form-control'>
+        </div>
+        <!--Input description-->
+        <div class="">
+          <label>Ingrese la Descripción</label>
+          <input type="text" formControlName="description" class='form-control'>
+        </div>
+        <div class="form-group text-center">
+          <!--<button type="button" class="btn btn-warning btn-raised" [disabled]="!f.valid">Get Started</button>-->
+          <button (click)="passBack()" type="submit" class="btn btn-blue btn-raised">Actualizar</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,96 @@
+<!--Actualización del Usuario-->
+<div class="mainContainer">
+  <div class="modal-header">
+    <h4>Actualización de Usuario</h4>
+    <button type="button" class="close" data-dismiss="activeModal" (click)="closeWindow()" arial-label="Close"><span
+        aria-hidden="true">&times;</span></button>
+  </div>
+  <section id="update">
+    <div class="card-block mx-auto">
+      <form [formGroup]="user">
+        <!--Input name-->
+        <div class="">
+          <label>Ingrese el Nombre Completo a Actualizar</label>
+          <input type="text" formControlName="name" class='form-control'>
+        </div>
+        <!--Input email-->
+        <div class="">
+          <label>Ingrese el Email a Actualizar</label>
+          <input type="text" formControlName="email" class='form-control'>
+        </div>
+        <!--Input userName-->
+        <div class="">
+          <label>Ingrese el Nombre de Usuario a Actualizar</label>
+          <input type="text" formControlName="userName" class='form-control'>
+        </div>
+        <!--Input phone-->
+        <div class="">
+          <label>Ingrese el teléfono a Actualizar</label>
+          <input type="tel" formControlName="phone" class='form-control'>
+        </div>
+        <!--Input address-->
+        <div class="">
+          <label>Ingrese la dirección a Actualizar</label>
+          <input type="text" formControlName="address" class='form-control'>
+        </div>
+        <!--Input role-->
+        <div class="">
+          <label>Ingrese el Role a Actualizar</label>
+          <select formControlName="role" class="custom-select form-control">
+            <option value="ROLE_ADMIN">Rol de Administrador</option>
+            <option value="ROLE_USER">Rol de Usuario</option>
+          </select>
+        </div>
+        <!--Input documentType-->
+        <div class="">
+          <label>Ingrese el Tipo de Documento a Actualizar</label>
+          <select formControlName="documentType" class="custom-select form-control">
+            <option value="Cédula de Ciudadanía">Cédula de Ciudadanìa</option>
+            <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
+            <option value="Pasaporte">Pasaporte</option>
+            <option value="Cédula de Extranjería">Cédula de Extranjería</option>
+            <option value="NIT">NIT</option>
+          </select> </div>
+        <!--Input documentNumber-->
+        <div class="">
+          <label>Ingrese el Número de Documento a Actualizar</label>
+          <input type="text" formControlName="documentNumber" class='form-control'>
+        </div>
+        <!--Input nameCompany-->
+        <div class="">
+          <label>Ingrese el Nombre de la Compañía a Actualizar</label>
+          <input type="text" formControlName="nameCompany" class='form-control'>
+        </div>
+        <!--Input activatedPlan-->
+        <div class="">
+          <label>Seleccione el Plan a Actualizar</label>
+          <select formControlName="activatedPlan" class="custom-select form-control">
+            <option *ngFor='let planInfo of planInfo' [value]="planInfo.idPlans">
+              {{planInfo.namePlan}}
+            </option>
+          </select>
+        </div>
+
+        <!--Input enable
+
+        <div>
+          <label>Habilitado</label>
+          <input type="checkbox" formControlName="enable" class='form-control col-md-1'>
+        </div>
+ -->
+        <div class="row" style="position: relative; left: 30px;">
+          <div class="form-group text-center" style="margin: 5px;">
+            <!--<button type="button" class="btn btn-warning btn-raised" [disabled]="!f.valid">Get Started</button>-->
+            <button (click)="passBack()" type="submit" class="btn btn-blue btn-raised">Actualizar</button>
+          </div>
+          <div style="margin: 5px;">
+            <!--<button type="button" class="btn btn-warning btn-raised" [disabled]="!f.valid">Get Started</button>-->
+            <button (click)="changePassword()" type="submit" class="btn btn-warning btn-raised">Cambiar Contraseña de
+              Usuario</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </section>
+</div>

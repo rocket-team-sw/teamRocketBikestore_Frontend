@@ -1,0 +1,77 @@
+<div class="mainContainer">
+  <div class="modal-header">
+    <h4>Asignación de Menús</h4>
+    <button type="button" class="close" data-dismiss="activeModal" (click)="closeWindow()" arial-label="Close"><span
+        aria-hidden="true">&times;</span></button>
+  </div>
+  <section id="regestration">
+    <div class="card-block">
+      <form (ngSubmit)="f.form.valid" #f="ngForm">
+        <!--Nombre Módulo-->
+        <ul class="list-group">
+          <div class="">
+            <li class="list-group-item">
+              <label>
+                Nombre del Módulo:
+              </label>
+              {{moduleInfoUpdate.nameModule}}
+            </li>
+          </div>
+          <!--Descripción Módulo-->
+          <div class="">
+            <li class="list-group-item">
+              <label>
+                Descripción del Módulo:
+              </label>
+              {{moduleInfoUpdate.description}}
+            </li>
+          </div>
+          <!--Selector de Menús -->
+          <div class="">
+            <li class="list-group-item">
+              <label>Seleccione un menú para el módulo</label>
+              <select placeholder="Seleccione el Menu" class="custom-select form-control" name="selectMenu"
+                [(ngModel)]="form.moduleMenu" #moduleMenu="ngModel">
+                <option [value]='-1'>Seleccione un menú para el módulo</option>
+                <option *ngFor='let menuInfo of menuInfo' [value]="menuInfo.idMenu">
+                  {{menuInfo.menuName}}
+                </option>
+              </select>
+              <button class="btn btn-purple btn-raised" (click)="toPair(form.moduleMenu, moduleInfoUpdate.idModules)">
+                Adicionar Menú a Módulo
+              </button>
+              <div *ngIf="isPairedMenuFailed" class="alert alert-danger">
+                {{errorMessage}}
+              </div>
+
+            </li>
+          </div>
+        </ul>
+      </form>
+    </div>
+  </section>
+
+
+  <!--Tabla de Módulos-->
+  <div class="dataTable">
+    <ngx-datatable #table class='bootstrap' [rows]="rows" [columns]="columns" [columnMode]="'force'"
+      [sortType]="'multi'" [reorderable]="false" [rowHeight]="50" [summaryPosition]="'top'">
+      <ngx-datatable-column prop="menuName" [resizeable]="false">
+        <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn"></ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Acciones" [resizeable]="false">
+        <ng-template ngx-datatable-header-template>
+          Acción
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <!--Botón Eliminar-->
+          <button type="submit" class="btn btn-danger btn-raised"
+            (click)="unPair(row.idMenu, moduleInfoUpdate.idModules)">
+            <i class="fa fa-trash"></i>
+          </button>
+
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+</div>
